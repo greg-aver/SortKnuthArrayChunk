@@ -108,35 +108,6 @@ public class SortLevel {
         }
         return indexPivot;
     }
-    /*    public static int ArrayChunk(int[] M) {
-        int indexPivot;
-        label:
-        {
-            indexPivot = M.length / 2;
-            int pivot = M[indexPivot];
-            int i1 = 0;
-            int i2 = M.length - 1;
-            while (i1 < i2 && !(i1 == i2 - 1 && M[i1] < M[i2])) {
-                while (M[i1] < pivot && i1 <= indexPivot) {
-                    i1++;
-                }
-                while (M[i2] > pivot && i2 >= indexPivot) {
-                    i2--;
-                }
-
-                if (i1 == i2 - 1 && M[i1] > M[i2]) {
-
-                    break label;
-                }
-                if (M[i1] > M[i2]) {
-                    change(i1, i2, M);
-                    i1++;
-                    i2--;
-                }
-            }
-        }
-        return indexPivot;
-    }*/
 
     public static int ArrayChunk(int[] M, int i1, int i2) {
         int indexPivot = ((i2 - i1 + 1) / 2) + i1;
