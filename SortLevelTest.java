@@ -117,4 +117,11 @@ class SortLevelTest {
         assertThat(SortLevel.ArrayChunk(new int[]{6, 5, 7}, 0, 2), is(1));
         assertThat(array, is(new int[]{5, 6, 7}));
     }
+    
+    @Test
+    void arrayChunk_array() {
+        int[] array = new int[]{6, 5, 7};
+        assertThat(SortLevel.ArrayChunk(array, 0, 2), is(1));
+        assertThat(array, is(new int[]{5, 6, 7}));
+    }
 }
