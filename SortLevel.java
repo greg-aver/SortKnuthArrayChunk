@@ -77,7 +77,7 @@ public class SortLevel {
 
     public static int ArrayChunk(int[] M) {
         int indexPivot;
-        label1:
+        while (true)
         {
             indexPivot = M.length / 2;
             int pivot = M[indexPivot];
@@ -92,7 +92,7 @@ public class SortLevel {
                 }
                 if (i1 == i2 - 1 && M[i1] > M[i2]) {
                     change(i1, i2, M);
-                    break label1;
+                    break;
                 }
                 if (i1 == i2 || (M[i1] > M[i2] && i1 == i2 - 1)) {
                     return indexPivot;
@@ -106,28 +106,39 @@ public class SortLevel {
                 change(i1, i2, M);
             }
         }
-        return indexPivot;
     }
 
     public static int ArrayChunk(int[] M, int i1, int i2) {
-        int indexPivot = ((i2 - i1 + 1) / 2) + i1;
-        int pivot = M[indexPivot];
-        while (i1 < i2 && !(i1 == i2 - 1 && M[i1] < M[i2])) {
-            while (M[i1] < pivot) {
-                i1++;
-            }
-            while (M[i2] > pivot) {
-                i2--;
-            }
-            if (M[i1] > M[i2]) {
+        int indexPivot;
+        while (true)
+        {
+            indexPivot = ((i2 - i1 + 1) / 2) + i1;
+            int pivot = M[indexPivot];
+            while (true) {
+                while (M[i1] < pivot) {
+                    i1++;
+                }
+                while (M[i2] > pivot) {
+                    i2--;
+                }
+                if (i1 == i2 - 1 && M[i1] > M[i2]) {
+                    change(i1, i2, M);
+                    break;
+                }
+                if (i1 == i2 || (M[i1] > M[i2] && i1 == i2 - 1)) {
+                    return indexPivot;
+                }
+                if (i1 == indexPivot) {
+                    indexPivot = i2;
+                }
+                if (i2 == indexPivot) {
+                    indexPivot = i1;
+                }
                 change(i1, i2, M);
-                i1++;
-                i2--;
             }
         }
-        return indexPivot;
     }
-
+    
     public static void QuickSort(int[] array, int left, int right) {
         if (left >= right || left < 0 || right >= array.length) {
             return;
