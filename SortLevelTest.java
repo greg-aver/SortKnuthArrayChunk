@@ -100,4 +100,11 @@ class SortLevelTest {
         SortLevel.QuickSort(array, 0, array.length - 1);
         assertThat(array, is(new int[]{1, 2, 3, 4, 5}));
     }
+    
+    @Test
+    void arrayChunk_array312() {
+        int[] array = new int[]{3,1,2};
+        assertThat(SortLevel.ArrayChunk(array), is(1));
+        assertThat(array, is(new int[]{1,3,2}));
+    }
 }
