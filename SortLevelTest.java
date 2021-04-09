@@ -78,12 +78,14 @@ class SortLevelTest {
     void arrayChunk() {
         int[] array = new int[]{7, 5, 6, 4, 3, 1, 2};
         assertThat(SortLevel.ArrayChunk(array), is(3));
+        assertThat(SortLevel.ArrayChunk(new int[] {7, 5, 6, 4, 3, 1, 2}, 0, 6), is(3));
         assertThat(array, is(new int[]{2, 1, 3, 4, 6, 5, 7}));
     }
 
     @Test
     void arrayChunk_3Element() {
         int[] array = new int[]{6,5,7};
+        assertThat(SortLevel.ArrayChunk(new int[] {6,5,7}, 0, 2), is(1));
         assertThat(SortLevel.ArrayChunk(array), is(1));
     }
 
@@ -100,11 +102,19 @@ class SortLevelTest {
         SortLevel.QuickSort(array, 0, array.length - 1);
         assertThat(array, is(new int[]{1, 2, 3, 4, 5}));
     }
-    
+
     @Test
     void arrayChunk_array312() {
         int[] array = new int[]{3,1,2};
         assertThat(SortLevel.ArrayChunk(array), is(1));
-        assertThat(array, is(new int[]{1,3,2}));
+        assertThat(array, is(new int[]{1,2,3}));
+    }
+
+    @Test
+    void arrayChunk_array657() {
+        int[] array = new int[]{6, 5, 7};
+        assertThat(SortLevel.ArrayChunk(array), is(1));
+        assertThat(SortLevel.ArrayChunk(new int[]{6, 5, 7}, 0, 2), is(1));
+        assertThat(array, is(new int[]{5, 6, 7}));
     }
 }
