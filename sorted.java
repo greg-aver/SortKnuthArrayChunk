@@ -12,10 +12,13 @@ public class SortLevel {
     public static ArrayList<Integer> KnuthSequence(int array_size) {
         ArrayList<Integer> listResult = new ArrayList<>();
         int n = 1;
-        while (n < array_size) {
+        if (array_size == 0) {
+            return listResult;
+        }
+        do {
             listResult.add(n);
             n = 3 * n + 1;
-        }
+        } while (n < array_size);
         Collections.reverse(listResult);
         return listResult;
     }
