@@ -75,82 +75,50 @@ public class SortLevel {
         }
     }
 
-    public static int ArrayChunk(int[] M) {
+    
+    public static int ArrayChunk(int[] array, int left, int right) {
         int indexPivot;
-        while (true)
-        {
-            indexPivot = M.length / 2;
-            int pivot = M[indexPivot];
-            int i1 = 0;
-            int i2 = M.length - 1;
+        while (true) {
+            indexPivot = (left + right) / 2;
+            int pivot = array[indexPivot];
+            int i1 = left;
+            int i2 = right;
             while (true) {
-                while (M[i1] < pivot) {
+                while (array[i1] < pivot) {
                     i1++;
                 }
-                while (M[i2] > pivot) {
+                while (array[i2] > pivot) {
                     i2--;
                 }
-                if (i1 == i2 - 1 && M[i1] > M[i2]) {
-                    change(i1, i2, M);
+                if (i1 == i2 - 1 && array[i1] > array[i2]) {
+                    change(i1, i2, array);
                     break;
                 }
-                if (i1 == i2 || (M[i1] > M[i2] && i1 == i2 - 1)) {
+                if (i1 == i2 || (array[i1] > array[i2] && i1 == i2 - 1)) {
                     return indexPivot;
                 }
                 if (i1 == indexPivot) {
                     indexPivot = i2;
+                } else {
+                    if (i2 == indexPivot) {
+                        indexPivot = i1;
+                    }
                 }
-                if (i2 == indexPivot) {
-                    indexPivot = i1;
-                }
-                change(i1, i2, M);
+                change(i1, i2, array);
             }
         }
     }
 
-    public static int ArrayChunk(int[] M, int i1, int i2) {
-        int indexPivot;
-        while (true)
-        {
-            indexPivot = ((i2 - i1 + 1) / 2) + i1;
-            int pivot = M[indexPivot];
-            while (true) {
-                while (M[i1] < pivot) {
-                    i1++;
-                }
-                while (M[i2] > pivot) {
-                    i2--;
-                }
-                if (i1 == i2 - 1 && M[i1] > M[i2]) {
-                    change(i1, i2, M);
-                    break;
-                }
-                if (i1 == i2 || (M[i1] > M[i2] && i1 == i2 - 1)) {
-                    return indexPivot;
-                }
-                if (i1 == indexPivot) {
-                    indexPivot = i2;
-                }
-                if (i2 == indexPivot) {
-                    indexPivot = i1;
-                }
-                change(i1, i2, M);
-            }
-        }
+    public static int ArrayChunk(int[] M) {
+        return ArrayChunk(M, 0, M.length - 1);
     }
     
     public static void QuickSort(int[] array, int left, int right) {
-        if (left >= right || left < 0 || right >= array.length) {
-            return;
-        }
-        int indexPivot = ArrayChunk(array, left, right);
-        QuickSort(array, left, indexPivot - 1);
-        QuickSort(array, indexPivot + 1, right);
+        int index = ArrayChunk(array, left, right);
+        if (left < index - 1/* && ((index - 1) - left) > 1*/)
+            QuickSort(array, left, index - 1);
+        if (index + 1 < right /*&& (right - (index + 1)) > 1*/)
+            QuickSort(array, index + 1, right);
     }
 }
-
-
-
-
-
 
