@@ -129,5 +129,19 @@ public class SortLevel {
         QuickSortTailOptimization(array, left, indexPivot - 1);
         QuickSortTailOptimization(array, indexPivot + 1, right);
     }
+    
+     public static ArrayList<Integer> KthOrderStatisticsStep(int[] Array, int L, int R, int k) {
+        ArrayList<Integer> listResult = new ArrayList<>();
+        int n = (L + R) / 2;
+        if (n < k) {
+            L = n + 1;
+        }
+        if (n > k) {
+            R = n - 1;
+        }
+        listResult.add(L);
+        listResult.add(R);
+        return listResult;
+    }
 }
 
