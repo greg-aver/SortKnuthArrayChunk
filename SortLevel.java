@@ -122,12 +122,11 @@ public class SortLevel {
     }
     
     public static void QuickSortTailOptimization(int[] array, int left, int right) {
-        if (right >= array.length || right - left < 1 || left < 0) {
-            return;
+        while (left < right) {
+            int indexPivot = ArrayChunk(array, left, right);
+            QuickSortTailOptimization(array, left, indexPivot);
+            left = indexPivot + 1;
         }
-        int indexPivot = ArrayChunk(array, left, right);
-        QuickSortTailOptimization(array, left, indexPivot - 1);
-        QuickSortTailOptimization(array, indexPivot + 1, right);
     }
     
      public static ArrayList<Integer> KthOrderStatisticsStep(int[] Array, int L, int R, int k) {
