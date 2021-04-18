@@ -124,8 +124,13 @@ public class SortLevel {
     public static void QuickSortTailOptimization(int[] array, int left, int right) {
         while (left < right) {
             int indexPivot = ArrayChunk(array, left, right);
-            QuickSortTailOptimization(array, left, indexPivot);
-            left = indexPivot + 1;
+            if (indexPivot - left < right - indexPivot) {
+                QuickSortTailOptimization(array, left, indexPivot - 1);
+                left = indexPivot + 1;
+            } else {
+                QuickSortTailOptimization(array, indexPivot + 1, right);
+                right = indexPivot - 1;
+            }
         }
     }
     
