@@ -126,8 +126,8 @@ public class SortLevel {
             return;
         }
         int indexPivot = ArrayChunk(array, left, right);
-        QuickSort(array, left, indexPivot - 1);
-        QuickSort(array, indexPivot + 1, right);
+        QuickSortTailOptimization(array, left, indexPivot - 1);
+        QuickSortTailOptimization(array, indexPivot + 1, right);
     }
 }
 
